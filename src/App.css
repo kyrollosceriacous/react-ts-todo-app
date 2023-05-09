@@ -38,5 +38,5 @@ body {
 }
 
 #todo-creation, #new-div {
-  height: 50%; /* Adjusted to less than 50% each */
+  height: 50%;
 }
