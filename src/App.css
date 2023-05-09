@@ -35,6 +35,7 @@ body {
 #display-list {
   width: 60%;
   height: 100%;
+  overflow: auto;
 }
 
 #todo-creation, #new-div {
