@@ -1,5 +1,6 @@
 import React from "react";
 import TodoItemModel from "../models/TodoItem";
+import { FormCheck } from 'react-bootstrap';
 
 interface TodoListProps {
     todos: TodoItemModel[];
@@ -28,15 +29,13 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
           {todos.map((todo) => (
             <div className="todo-entry" key={todo.id}>
               <p>{todo.text}</p>
-              <label className="mark-as-completed" htmlFor={`checkbox-${todo.id}`}>
-                Mark as completed
-                <input
-                    className="check-box-completed"
+                <FormCheck
                     type="checkbox"
+                    id={`check-api-${todo.id}`}
                     checked={todo.completed}
                     onChange={() => handleCheckboxChange(todo.id)}
+                    label={`Mark as completed`}
                 />
-              </label>
             </div>
           ))}
         </div>
