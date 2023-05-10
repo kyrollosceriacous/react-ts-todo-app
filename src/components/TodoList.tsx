@@ -5,10 +5,23 @@ import { FormCheck } from 'react-bootstrap';
 interface TodoListProps {
     todos: TodoItemModel[];
     setTodos: React.Dispatch<React.SetStateAction<TodoItemModel[]>>;
+    filter: string;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
     const [hoveredTodoId, setHoveredTodoId] = React.useState<number | null>(null);
+
+    let filteredTodos = todos;
+    switch (filter) {
+        case 'active':
+            filteredTodos = todos.filter(todo => !todo.completed);
+            break;
+        case 'completed':
+            filteredTodos = todos.filter(todo => todo.completed);
+            break;
+        default:
+            break;
+    }
 
     const handleMouseEnter = (id: number) => {
         setHoveredTodoId(id);
@@ -86,7 +99,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
                 <h3>Completion status</h3>
             </div>
             <div className="todo-list">
-                {todos.map((todo) => (
+                {filteredTodos.map((todo) => (
                     <div className={`todo-entry ${todo.editing ? 'editing' : ''}`} key={todo.id}>
                         {todo.editing ? (
                             <input

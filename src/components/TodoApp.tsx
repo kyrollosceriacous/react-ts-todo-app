@@ -73,10 +73,10 @@ const TodoApp: React.FC = () => {
                 </div>
                 <div className='child-div' id='display-list'>
                 <Routes>
-                    <Route path="/all" element={<TodoList todos={todos} setTodos={setTodos} />} />
-                    <Route path="/active" element={<TodoList todos={todos.filter(todo => !todo.completed)} setTodos={setTodos} />} />
-                    <Route path="/completed" element={<TodoList todos={todos.filter(todo => todo.completed)} setTodos={setTodos} />} />
-                    <Route path="*" element={<TodoList todos={todos} setTodos={setTodos} />} />
+                    <Route path="/all" element={<TodoList filter="all" todos={todos} setTodos={setTodos} />} />
+                    <Route path="/active" element={<TodoList filter="active" todos={todos} setTodos={setTodos} />} />
+                    <Route path="/completed" element={<TodoList filter="completed" todos={todos} setTodos={setTodos} />} />
+                    <Route path="*" element={<TodoList filter="all" todos={todos} setTodos={setTodos} />} />
                 </Routes>
                 </div>
             </div>
