@@ -2,6 +2,8 @@ import React from "react";
 import TodoItemModel from "../models/TodoItem";
 import { FormCheck, Button } from 'react-bootstrap';
 
+const LOCAL_STORAGE_KEY = 'todos';
+
 interface TodoListProps {
     todos: TodoItemModel[];
     setTodos: React.Dispatch<React.SetStateAction<TodoItemModel[]>>;
@@ -89,8 +91,14 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
     };
 
     const handleDeleteClick = (id: number) => {
+        const indexToRemove = todos.findIndex((todo) => todo.id === id);
+        
+        if (indexToRemove !== -1) {
+            todos.splice(indexToRemove, 1);
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos));
         setTodos(todos.filter(todo => todo.id !== id));
-    };
+      };
 
     const handleMarkAllActiveTodosAsComplete = () => {
         setTodos(todos.map(todo => {
@@ -107,9 +115,13 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
     const handleClearCurrentTodoType = () => {
         switch (filter) {
             case 'active':
+                const todosOnlyCompleted = todos.filter((todo) => todo.completed === true);
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todosOnlyCompleted));
                 setTodos(todos.filter(todo => todo.completed));
                 break;
             case 'completed':
+                const todosOnlyActive = todos.filter((todo) => todo.completed === false);
+                localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todosOnlyActive));
                 setTodos(todos.filter(todo => !todo.completed));
                 break;
             default:
@@ -118,6 +130,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
     };
 
     const clearAllTodos = () => {
+        localStorage.removeItem(LOCAL_STORAGE_KEY);
         setTodos([]);
     }
 
