@@ -59,6 +59,14 @@ body {
   height: 50%;
 }
 
+.display-list-descriptions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem;
+}
+
+/*
 .filter-button {
   position: absolute;
   top: 0;
@@ -95,4 +103,6 @@ body {
   background-color: var(--hva-selection-color);
   border: 1px solid var(--hva-main-theme);
 }
+
+*/
 

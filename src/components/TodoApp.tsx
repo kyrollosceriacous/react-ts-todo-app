@@ -31,7 +31,9 @@ const TodoApp: React.FC = () => {
               <div id='todo-creation'>
                 <h1 className='main-heading-app'>Todo web app</h1>
                 <InputField todos={todos} setTodos={setTodos} />
-
+              </div>
+              <div id='new-div'>
+                <h2>I want to view</h2>
                 <nav>
                   <ul>
                     <li><Link to="/all">All</Link></li>
@@ -39,9 +41,6 @@ const TodoApp: React.FC = () => {
                     <li><Link to="/completed">Completed</Link></li>
                   </ul>
                 </nav>
-              </div>
-              <div id='new-div'>
-                <p>Btn: Clear currently viewing list?</p>
               </div>
             </div>
             <div className='child-div' id='display-list'>

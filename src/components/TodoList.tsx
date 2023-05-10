@@ -19,6 +19,11 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
         }));
     }
     return (
+        <div>
+            <div className="display-list-descriptions">
+                <h2>Desciption</h2>
+                <h2>Completion status</h2>
+            </div>
         <div className="todo-list">
           {todos.map((todo) => (
             <div className="todo-entry" key={todo.id}>
@@ -33,6 +38,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
               </label>
             </div>
           ))}
+        </div>
         </div>
       );
 };
