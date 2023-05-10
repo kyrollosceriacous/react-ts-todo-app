@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItemModel from "../models/TodoItem";
-import { FormCheck } from 'react-bootstrap';
+import { FormCheck, Button } from 'react-bootstrap';
 
 interface TodoListProps {
     todos: TodoItemModel[];
@@ -92,6 +92,35 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
         setTodos(todos.filter(todo => todo.id !== id));
     };
 
+    const handleMarkAllActiveTodosAsComplete = () => {
+        setTodos(todos.map(todo => {
+            if (!todo.completed) {
+                return {
+                    ...todo,
+                    completed: true
+                };
+            }
+            return todo;
+        }));
+    };
+
+    const handleClearCurrentTodoType = () => {
+        switch (filter) {
+            case 'active':
+                setTodos(todos.filter(todo => todo.completed));
+                break;
+            case 'completed':
+                setTodos(todos.filter(todo => !todo.completed));
+                break;
+            default:
+                break;
+        }
+    };
+
+    const clearAllTodos = () => {
+        setTodos([]);
+    }
+
     return (
         <div>
             <div className="display-list-descriptions">
@@ -136,6 +165,11 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
                         />
                     </div>
                 ))}
+            </div>
+            <div className="action-buttons-container">
+                {filter === 'active' && todos.some(todo => !todo.completed) && <Button  variant="success" className="button-mark-all-completed" onClick={handleMarkAllActiveTodosAsComplete}>Mark All As Completed</Button>}
+                {filteredTodos.length !== 0 && <Button variant="warning" className="button-clear-current-viewing-type" onClick={handleClearCurrentTodoType}>Clear Current Viewing Type</Button>}
+                {todos.length !== 0 && <Button variant="danger" className="button-clear-all" onClick={clearAllTodos}>Clear <em><strong>All</strong></em> Todos</Button>}
             </div>
         </div>
     );

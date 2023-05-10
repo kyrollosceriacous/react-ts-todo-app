@@ -97,6 +97,25 @@ body {
   color: black !important;
 }
 
+.button-mark-all-completed {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.button-clear-current-viewing-type {
+  position: absolute;
+  bottom: 0;
+  right: 45%;
+}
+
+.button-clear-all {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+
 /*
 .filter-button {
   position: absolute;
