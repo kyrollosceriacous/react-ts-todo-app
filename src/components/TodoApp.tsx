@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useMatch} from "react-router-dom";
 import InputField from "./InputField";
 import TodoItemModel from "../models/TodoItem";
 import TodoList from "./TodoList";
 
 const LOCAL_STORAGE_KEY = "todos"
+
+interface CustomLinkProps {
+    to: string;
+    children: React.ReactNode;
+}
 
 const TodoApp: React.FC = () => {
     const [todos, setTodos] = useState<TodoItemModel[]>([]);
@@ -22,6 +27,16 @@ const TodoApp: React.FC = () => {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
         }
     }, [todos]);
+    
+    const CustomLink = ({ to, children }: CustomLinkProps) => {
+        let match = useMatch(to);
+        return (
+          <li className={match ? 'active' : ''}>
+            <Link to={to}>{children}</Link>
+          </li>
+        );
+    }
+
 
     return (
       <Router>
@@ -36,9 +51,9 @@ const TodoApp: React.FC = () => {
                 <h2>I want to view</h2>
                 <nav>
                   <ul>
-                    <li><Link to="/all">All</Link></li>
-                    <li><Link to="/active">Active</Link></li>
-                    <li><Link to="/completed">Completed</Link></li>
+                    <CustomLink to="/all">All</CustomLink>
+                    <CustomLink to="/active">Active</CustomLink>
+                    <CustomLink to="/completed">Completed</CustomLink>
                   </ul>
                 </nav>
               </div>
