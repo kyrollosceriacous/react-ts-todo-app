@@ -6,10 +6,26 @@ import TodoList from "./TodoList";
 
 const LOCAL_STORAGE_KEY = "todos"
 
-interface CustomLinkProps {
+interface NavLinkProps {
     to: string;
     children: React.ReactNode;
+    count: number;
 }
+
+const NavLink = ({ to, children, count }: NavLinkProps) => {
+    let location = useLocation();
+    let isActive = (to === "/all" && (location.pathname === "/all" || location.pathname === "/"))
+                   || location.pathname === to;
+
+    return (
+        <li className={isActive ? 'active' : ''}>
+            <Link to={to}>
+              {children}
+              <strong> ({count})</strong>
+            </Link>
+        </li>
+    );
+};
 
 const TodoApp: React.FC = () => {
     const [todos, setTodos] = useState<TodoItemModel[]>([]);
@@ -27,19 +43,10 @@ const TodoApp: React.FC = () => {
             localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
         }
     }, [todos]);
-    
-    const CustomLink = ({ to, children }: CustomLinkProps) => {
-        let location = useLocation();
-        let isActive = (to === "/all" && (location.pathname === "/all" || location.pathname === "/"))
-                       || location.pathname === to;
-    
-        return (
-            <li className={isActive ? 'active' : ''}>
-                <Link to={to}>{children}</Link>
-            </li>
-        );
-    };
-    
+
+    const allTodosCount = todos.length;
+    const activeTodosCount = todos.filter(todo => !todo.completed).length;
+    const completedTodosCount = todos.filter(todo => todo.completed).length;
 
     return (
       <Router>
@@ -54,9 +61,9 @@ const TodoApp: React.FC = () => {
                 <h2>I want to view</h2>
                 <nav>
                   <ul>
-                    <CustomLink to="/all">All</CustomLink>
-                    <CustomLink to="/active">Active</CustomLink>
-                    <CustomLink to="/completed">Completed</CustomLink>
+                    <NavLink to="/all" count={allTodosCount}>All</NavLink>
+                    <NavLink to="/active" count={activeTodosCount}>Active</NavLink>
+                    <NavLink to="/completed" count={completedTodosCount}>Completed</NavLink>
                   </ul>
                 </nav>
               </div>
