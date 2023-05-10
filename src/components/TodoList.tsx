@@ -75,6 +75,10 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
         }
     };
 
+    const handleDeleteClick = (id: number) => {
+        setTodos(todos.filter(todo => todo.id !== id));
+    };
+
     return (
         <div>
             <div className="display-list-descriptions">
@@ -98,12 +102,15 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
                                 onMouseLeave={() => handleMouseLeave()}
                             >
                                 <p className="todo-text"
-                                onDoubleClick={() => handleDoubleClick(todo.id)}
+                                    onDoubleClick={() => handleDoubleClick(todo.id)}
                                 >
                                     {todo.text}
                                 </p>
                                 {hoveredTodoId === todo.id && (
-                                    <span className="edit-icon">✎</span>
+                                    <>
+                                        {/*<span className="edit-icon">✎</span>*/}
+                                        <span className="delete-icon" onClick={() => handleDeleteClick(todo.id)}>🗑️</span>
+                                    </>
                                 )}
                             </div>
                         )}

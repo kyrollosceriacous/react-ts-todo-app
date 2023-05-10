@@ -180,7 +180,6 @@ nav {
 .todo-text:hover {
   background-color: lightgray;
   border-radius: 1rem;
-  padding: 0.625rem;
 }
 
 .todo-text-wrapper {
@@ -191,4 +190,13 @@ nav {
 .edit-icon {
   margin-bottom: 1rem;
   margin-left: 1rem;
+}
+
+.delete-icon {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+}
+
+.delete-icon:hover {
+  cursor: pointer;
 }
