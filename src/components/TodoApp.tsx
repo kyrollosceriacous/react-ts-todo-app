@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useMatch} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useMatch } from "react-router-dom";
 import InputField from "./InputField";
 import TodoItemModel from "../models/TodoItem";
 import TodoList from "./TodoList";
@@ -29,13 +29,13 @@ const TodoApp: React.FC = () => {
     }, [todos]);
     
     const CustomLink = ({ to, children }: CustomLinkProps) => {
-        let match = useMatch(to);
+        let match = useMatch(to === "/all" ? "/" : to);
         return (
-          <li className={match ? 'active' : ''}>
-            <Link to={to}>{children}</Link>
-          </li>
+            <li className={match ? 'active' : ''}>
+                <Link to={to}>{children}</Link>
+            </li>
         );
-    }
+    };
 
 
     return (
@@ -59,12 +59,12 @@ const TodoApp: React.FC = () => {
               </div>
             </div>
             <div className='child-div' id='display-list'>
-              <Routes>
-                <Route path="/" element={<TodoList todos={todos} setTodos={setTodos} />} />
+            <Routes>
                 <Route path="/all" element={<TodoList todos={todos} setTodos={setTodos} />} />
                 <Route path="/active" element={<TodoList todos={todos.filter(todo => !todo.completed)} setTodos={setTodos} />} />
                 <Route path="/completed" element={<TodoList todos={todos.filter(todo => todo.completed)} setTodos={setTodos} />} />
-              </Routes>
+                <Route path="*" element={<TodoList todos={todos} setTodos={setTodos} />} />
+            </Routes>
             </div>
           </div>
         </div>
