@@ -31,6 +31,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
               <label className="mark-as-completed" htmlFor={`checkbox-${todo.id}`}>
                 Mark as completed
                 <input
+                    className="check-box-completed"
                     type="checkbox"
                     checked={todo.completed}
                     onChange={() => handleCheckboxChange(todo.id)}

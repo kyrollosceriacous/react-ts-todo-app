@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: var(--hva-main-theme);
+  background-color: var(--hva-main-theme) !important;
 }
 
 .center-div {
@@ -45,7 +45,7 @@ body {
   align-items: center;
 }
 
-.mark-as-completed {
+.mark-as-completed, .check-box-completed {
   margin-left: 2rem;
 }
 
