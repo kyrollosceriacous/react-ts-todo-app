@@ -11,6 +11,10 @@ interface NavLinkProps {
     count: number;
 }
 
+interface TodoAppProps {
+    RouterComponent?: React.ComponentType;
+}
+
 const NavLink = ({ to, children, count }: NavLinkProps) => {
     let location = useLocation();
     let isActive = (to === "/all" && (location.pathname === "/all" || location.pathname === "/"))
@@ -26,7 +30,7 @@ const NavLink = ({ to, children, count }: NavLinkProps) => {
     );
 };
 
-const TodoApp: React.FC = () => {
+const TodoApp: React.FC<TodoAppProps> = ({ RouterComponent = Router }) => {
     const [todos, setTodos] = useState<TodoItemModel[]>([]);
 
     useEffect(() => {
@@ -48,7 +52,7 @@ const TodoApp: React.FC = () => {
     const completedTodosCount = todos.filter(todo => todo.completed).length;
 
     return (
-        <Router>
+        <RouterComponent>
         <div className='center-div'>
             <div className='content-div'>
             <div className="header-container">
@@ -81,7 +85,7 @@ const TodoApp: React.FC = () => {
             </div>
             </div>
         </div>
-        </Router>
+        </RouterComponent>
     );
 };
 
