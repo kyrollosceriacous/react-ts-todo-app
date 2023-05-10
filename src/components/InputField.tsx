@@ -28,10 +28,10 @@ interface InputFieldProps {
   
     return (
       <div className="input-field">
+        <p>Create a new todo:</p>
         <input type="text" value={inputValue} onChange={handleInputChange} />
-        <p>Your input: {inputValue}</p>
-        <Button onClick={createTodo}>
-          Create todo
+        <Button className="button-create-todo" onClick={createTodo}>
+            Create todo
         </Button>
       </div>
     );

@@ -66,6 +66,17 @@ body {
   margin: 1rem;
 }
 
+.button-create-todo {
+  background-color: var(--hva-main-theme) !important;
+  border-color: var(--hva-selection-color) !important;
+  margin: 1rem;
+}
+
+.button-create-todo:hover {
+  background-color: var(--hva-selection-color) !important;
+  color: black !important;
+}
+
 /*
 .filter-button {
   position: absolute;
