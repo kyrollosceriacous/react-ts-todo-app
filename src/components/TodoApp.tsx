@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react
 import InputField from "./InputField";
 import TodoItemModel from "../models/TodoItem";
 import TodoList from "./TodoList";
-
-const LOCAL_STORAGE_KEY = "todos"
+import { LOCAL_STORAGE_KEY } from "../config/constants";
 
 interface NavLinkProps {
     to: string;

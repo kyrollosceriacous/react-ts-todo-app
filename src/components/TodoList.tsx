@@ -1,8 +1,7 @@
 import React from "react";
 import TodoItemModel from "../models/TodoItem";
 import { FormCheck, Button } from 'react-bootstrap';
-
-const LOCAL_STORAGE_KEY = 'todos';
+import { LOCAL_STORAGE_KEY } from "../config/constants";
 
 interface TodoListProps {
     todos: TodoItemModel[];
