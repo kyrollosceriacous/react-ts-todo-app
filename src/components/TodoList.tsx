@@ -168,7 +168,7 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
             </div>
             <div className="action-buttons-container">
                 {filter === 'active' && todos.some(todo => !todo.completed) && <Button  variant="success" className="button-mark-all-completed" onClick={handleMarkAllActiveTodosAsComplete}>Mark All As Completed</Button>}
-                {filteredTodos.length !== 0 && <Button variant="warning" className="button-clear-current-viewing-type" onClick={handleClearCurrentTodoType}>Clear Current Viewing Type</Button>}
+                {filteredTodos.length !== 0 && filter !== 'all' && <Button variant="warning" className="button-clear-current-viewing-type" onClick={handleClearCurrentTodoType}>Clear Current Viewing Type</Button>}
                 {todos.length !== 0 && <Button variant="danger" className="button-clear-all" onClick={clearAllTodos}>Clear <em><strong>All</strong></em> Todos</Button>}
             </div>
         </div>

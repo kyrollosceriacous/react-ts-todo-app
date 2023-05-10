@@ -115,47 +115,6 @@ body {
   left: 0;
 }
 
-
-/*
-.filter-button {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-top: 1rem;
-  margin-right: 2rem;
-}
-
-.filter-button ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  display: none;
-}
-
-.filter-button:hover ul {
-  display: block;
-  cursor: pointer;
-}
-
-.filter-button ul li {
-  padding: 12px 16px;
-  display: block;
-  text-align: left;
-}
-
-.filter-button ul li:hover {
-  background-color: var(--hva-selection-color);
-  border: 1px solid var(--hva-main-theme);
-}
-
-*/
-
 ul {
   list-style-type: none;
   margin: 0;
