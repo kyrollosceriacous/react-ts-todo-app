@@ -32,6 +32,18 @@ body {
   justify-content: space-between;
 }
 
+.todo-entry {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5em;
+  margin-right: 5rem;
+  align-items: center;
+}
+
+.mark-as-completed {
+  margin-left: 2rem;
+}
+
 #display-list {
   width: 60%;
   height: 100%;

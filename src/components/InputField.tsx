@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import TodoItem from "../models/TodoItem";
+import TodoItemModel from "../models/TodoItem";
 
 
 interface InputFieldProps {
-    todos: TodoItem[];
-    setTodos: React.Dispatch<React.SetStateAction<TodoItem[]>>;
+    todos: TodoItemModel[];
+    setTodos: React.Dispatch<React.SetStateAction<TodoItemModel[]>>;
   }
 
   const InputField: React.FC<InputFieldProps> = ({ todos, setTodos }) => {
@@ -17,7 +17,7 @@ interface InputFieldProps {
   
     const createTodo = () => {
       if (inputValue.trim() !== '') {
-        const newTodo: TodoItem = {
+        const newTodo: TodoItemModel = {
           id: idCounter,
           text: inputValue,
           completed: false

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import InputField from "./InputField";
-import TodoItem from "../models/TodoItem";
+import TodoItemModel from "../models/TodoItem";
 import TodoList from "./TodoList";
 
 const TodoApp: React.FC = () => {
-    const [todos, setTodos] = useState<TodoItem[]>([]);
+    const [todos, setTodos] = useState<TodoItemModel[]>([]);
 
     return (
     <div className="center-div">
@@ -19,7 +19,7 @@ const TodoApp: React.FC = () => {
         </div>
         </div>
         <div className="child-div" id="display-list">
-        <TodoList todos={todos}/>
+        <TodoList todos={todos} setTodos={setTodos}/>
         </div>
     </div>
     </div>

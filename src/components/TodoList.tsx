@@ -1,16 +1,40 @@
 import React from "react";
-import TodoItem from "../models/TodoItem";
+import TodoItemModel from "../models/TodoItem";
 
 interface TodoListProps {
-    todos: TodoItem[];
+    todos: TodoItemModel[];
+    setTodos: React.Dispatch<React.SetStateAction<TodoItemModel[]>>;
 }
 
-const TodoList: React.FC<TodoListProps> = ({ todos }) => {
+const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
+    const handleCheckboxChange = (id: number) => {
+        setTodos(todos.map(todo => {
+            if (todo.id === id) {
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                };
+            }
+            return todo;
+        }));
+    }
     return (
-      <div className="todo-list">
-        {todos.map((todo) => <p key={todo.id}>{todo.text}</p>)}
-      </div>
-    );
+        <div className="todo-list">
+          {todos.map((todo) => (
+            <div className="todo-entry" key={todo.id}>
+              <p>{todo.text}</p>
+              <label className="mark-as-completed" htmlFor={`checkbox-${todo.id}`}>
+                Mark as completed
+                <input
+                    type="checkbox"
+                    checked={todo.completed}
+                    onChange={() => handleCheckboxChange(todo.id)}
+                />
+              </label>
+            </div>
+          ))}
+        </div>
+      );
 };
 
 export default TodoList;
