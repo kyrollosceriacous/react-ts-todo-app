@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import TodoItemModel from "../models/TodoItem";
 
-
 interface InputFieldProps {
     todos: TodoItemModel[];
     setTodos: React.Dispatch<React.SetStateAction<TodoItemModel[]>>;
@@ -38,6 +37,5 @@ interface InputFieldProps {
       </div>
     );
   };
-  
 
 export default InputField;
