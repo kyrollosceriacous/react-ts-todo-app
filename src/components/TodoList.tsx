@@ -1,7 +1,7 @@
 import React from "react";
 import TodoItemModel from "../models/TodoItem";
 import { FormCheck, Button } from 'react-bootstrap';
-import { LOCAL_STORAGE_KEY } from "../config/constants";
+import { LOCAL_STORAGE_KEY, TODOS_ACTIVE, TODOS_COMPLETED, EVENT_KEY_ENTER, EVENT_KEY_ESCAPE } from "../config/constants";
 
 interface TodoListProps {
     todos: TodoItemModel[];
@@ -14,10 +14,10 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
 
     let filteredTodos = todos;
     switch (filter) {
-        case 'active':
+        case TODOS_ACTIVE:
             filteredTodos = todos.filter(todo => !todo.completed);
             break;
-        case 'completed':
+        case TODOS_COMPLETED:
             filteredTodos = todos.filter(todo => todo.completed);
             break;
         default:
@@ -74,9 +74,9 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos, filter }) => {
     };
 
     const handleKeyDown = (event: React.KeyboardEvent, id: number, value: string) => {
-        if (event.key === 'Enter') {
+        if (event.key === EVENT_KEY_ENTER) {
             handleBlur(id, value);
-        } else if (event.key === 'Escape') {
+        } else if (event.key === EVENT_KEY_ESCAPE) {
             setTodos(todos.map(todo => {
                 if (todo.id === id) {
                     return {
