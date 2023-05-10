@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, useMatch } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 import InputField from "./InputField";
 import TodoItemModel from "../models/TodoItem";
 import TodoList from "./TodoList";
@@ -29,14 +29,17 @@ const TodoApp: React.FC = () => {
     }, [todos]);
     
     const CustomLink = ({ to, children }: CustomLinkProps) => {
-        let match = useMatch(to === "/all" ? "/" : to);
+        let location = useLocation();
+        let isActive = (to === "/all" && (location.pathname === "/all" || location.pathname === "/"))
+                       || location.pathname === to;
+    
         return (
-            <li className={match ? 'active' : ''}>
+            <li className={isActive ? 'active' : ''}>
                 <Link to={to}>{children}</Link>
             </li>
         );
     };
-
+    
 
     return (
       <Router>
