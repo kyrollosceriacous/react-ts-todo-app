@@ -34,7 +34,7 @@ const InputField: React.FC<InputFieldProps> = ({ todos, setTodos }) => {
 
     return (
         <div className="input-field">
-            <p>Create a new todo:</p>
+            <p className="input-field-creation-text">Create a new todo:</p>
             <input type="text" value={inputValue} onChange={handleInputChange} onKeyDown={handleKeyDown} />
             <Button
                 className='button-create-todo'

@@ -78,8 +78,8 @@ const TodoList: React.FC<TodoListProps> = ({ todos, setTodos }) => {
     return (
         <div>
             <div className="display-list-descriptions">
-                <h2>Description</h2>
-                <h2>Completion status</h2>
+                <h3>Description</h3>
+                <h3>Completion status</h3>
             </div>
             <div className="todo-list">
                 {todos.map((todo) => (

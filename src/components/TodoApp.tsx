@@ -49,36 +49,40 @@ const TodoApp: React.FC = () => {
     const completedTodosCount = todos.filter(todo => todo.completed).length;
 
     return (
-      <Router>
+        <Router>
         <div className='center-div'>
-          <div className='big-div'>
-            <div className='child-div'>
-              <div id='todo-creation'>
+            <div className='content-div'>
+            <div className="header-container">
                 <h1 className='main-heading-app'>Todo web app</h1>
-                <InputField todos={todos} setTodos={setTodos} />
-              </div>
-              <div id='new-div'>
-                <h2>I want to view</h2>
-                <nav>
-                  <ul>
-                    <NavLink to="/all" count={allTodosCount}>All</NavLink>
-                    <NavLink to="/active" count={activeTodosCount}>Active</NavLink>
-                    <NavLink to="/completed" count={completedTodosCount}>Completed</NavLink>
-                  </ul>
-                </nav>
-              </div>
             </div>
-            <div className='child-div' id='display-list'>
-            <Routes>
-                <Route path="/all" element={<TodoList todos={todos} setTodos={setTodos} />} />
-                <Route path="/active" element={<TodoList todos={todos.filter(todo => !todo.completed)} setTodos={setTodos} />} />
-                <Route path="/completed" element={<TodoList todos={todos.filter(todo => todo.completed)} setTodos={setTodos} />} />
-                <Route path="*" element={<TodoList todos={todos} setTodos={setTodos} />} />
-            </Routes>
+            <div className='big-div'>
+                <div className='child-div'>
+                <div id='todo-creation'>
+                    <InputField todos={todos} setTodos={setTodos} />
+                </div>
+                <div id='new-div'>
+                    <h4>I want to view</h4>
+                    <nav>
+                    <ul>
+                        <NavLink to="/all" count={allTodosCount}>All</NavLink>
+                        <NavLink to="/active" count={activeTodosCount}>Active</NavLink>
+                        <NavLink to="/completed" count={completedTodosCount}>Completed</NavLink>
+                    </ul>
+                    </nav>
+                </div>
+                </div>
+                <div className='child-div' id='display-list'>
+                <Routes>
+                    <Route path="/all" element={<TodoList todos={todos} setTodos={setTodos} />} />
+                    <Route path="/active" element={<TodoList todos={todos.filter(todo => !todo.completed)} setTodos={setTodos} />} />
+                    <Route path="/completed" element={<TodoList todos={todos.filter(todo => todo.completed)} setTodos={setTodos} />} />
+                    <Route path="*" element={<TodoList todos={todos} setTodos={setTodos} />} />
+                </Routes>
+                </div>
             </div>
-          </div>
+            </div>
         </div>
-      </Router>
+        </Router>
     );
 };
 
